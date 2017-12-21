@@ -83,7 +83,7 @@ public class FileOperation {
     }
 
 
-    public void fileMakerWithContent(String path,int number, String fileName, String content){
+    public void fileMakerWithContent(String path, int number, String fileName, String content) {
         /*Ahogy a 2.feladatnál szétszedem a file nevet,hogy belekerüljön a szám, majd meghívva a 3.feladat metódusát,
         melyben összefûzöm a file nevet a mappanévvel és beleírom a megadott tartalmat.*/
         String[] splittedFileName = fileName.split("\\.");
@@ -95,5 +95,43 @@ public class FileOperation {
             }
         }
     }
+
+    public void printMatrixIntoFile(int[][] mtx) {
+        /*létrehozom a mátrix.txt, forokkal bejárom a kapott mátrixot és a Stringé alakítottam a mátrix adott elemét
+        amit beleírtam a fileba (elõször a bufferbe aztán a fileba), soroként írtam egy sortörést.
+        * */
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fw = new FileWriter("matrix.txt");
+            bw = new BufferedWriter(fw);
+            for (int i = 0; i < mtx.length; i++) {
+                for (int j = 0; j < mtx[i].length; j++) {
+
+                    bw.write(String.valueOf(mtx[i][j]) + " ");
+                }
+                bw.write("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (fw != null) {
+                try {
+                    fw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
 }
