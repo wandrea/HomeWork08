@@ -83,4 +83,17 @@ public class FileOperation {
     }
 
 
+    public void fileMakerWithContent(String path,int number, String fileName, String content){
+        /*Ahogy a 2.feladatnál szétszedem a file nevet,hogy belekerüljön a szám, majd meghívva a 3.feladat metódusát,
+        melyben összefûzöm a file nevet a mappanévvel és beleírom a megadott tartalmat.*/
+        String[] splittedFileName = fileName.split("\\.");
+        if (splittedFileName.length == 2) {
+            for (int i = 1; i <= number; i++) {
+                String currentFileName = splittedFileName[0] + i + "." + splittedFileName[1];
+                fileMakerWithContent(path, currentFileName, content);
+
+            }
+        }
+    }
+
 }
