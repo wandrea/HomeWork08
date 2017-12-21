@@ -42,4 +42,45 @@ public class FileOperation {
             }
         }
     }
+
+    public void fileMakerWithContent(String path, String fileName, String content) {
+        /*létrehozom a változót amibe tárolom majd az elérési útvonalat és a file nevet összefûzve.
+        ha nincs a mappanév után / akkor rak bele egyet az összefûzésnél.
+        A FileWriter-tal létrehozom a file-t,a tartalmat bele írom a file-ba a BufferedWriter segítségével*/
+
+        String fullFilename = null;
+        if (path.endsWith(File.separator)) {
+            fullFilename = path + fileName;
+        } else {
+            fullFilename = path + File.separator + fileName;
+        }
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+
+        try {
+            fw = new FileWriter(fullFilename);
+            bw = new BufferedWriter(fw);
+            bw.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (fw != null) {
+                try {
+                    fw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
 }
