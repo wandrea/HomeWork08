@@ -29,4 +29,17 @@ public class FileOperation {
             }
         }
     }
+
+    public void fileMaker(String path, int number, String fileName) {
+        /*A pont mentén szétvágom a filenevet(feltételezve hogy egy db . van benne)
+        * egy for ciklusban létrehozom a számozott file-neveket,
+        * majd az elõzõ metódust meghívva létrehozom a file-okat.*/
+        String[] splittedFileName = fileName.split("\\.");
+        if (splittedFileName.length == 2) {
+            for (int i = 1; i <= number; i++) {
+                String currentFileName = splittedFileName[0] + i + "." + splittedFileName[1];
+                fileMaker(path, currentFileName);
+            }
+        }
+    }
 }
